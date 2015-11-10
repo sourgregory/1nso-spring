@@ -1,7 +1,11 @@
 package ua.upsite.nso.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
+import ua.upsite.nso.model.Language;
+import ua.upsite.nso.repository.TestRepository;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  *  Created by gregory on 11/9/15.
@@ -9,8 +13,18 @@ import org.springframework.stereotype.Service;
 //@Service
 public class TestServiceImpl implements TestService {
 
+    @Inject
+    private TestRepository repository;
+
     @Override
     public String sayHello() {
-        return "Hello huy!";
+        ArrayList<Language> langs = (ArrayList<Language>) repository.getAllLanguages();
+
+        StringBuilder builder = new StringBuilder();
+        for (Language lang : langs) {
+            builder.append(lang.getName()).append("\n");
+        }
+
+        return builder.toString();
     }
 }
