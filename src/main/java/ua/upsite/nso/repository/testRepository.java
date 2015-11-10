@@ -16,7 +16,6 @@ public class testRepository {
     @PersistenceContext EntityManager entityManager;
 
     public ArrayList<Language> getAllLanguages() {
-        entityManager->find()
     }
 
 }

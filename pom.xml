@@ -199,6 +199,11 @@
             <artifactId>tomcat-jdbc</artifactId>
             <version>8.0.28</version>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
+        </dependency>
     </dependencies>
 
     <build>

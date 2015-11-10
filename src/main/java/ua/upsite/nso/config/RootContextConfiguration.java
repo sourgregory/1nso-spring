@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.stereotype.Controller;
 import ua.upsite.nso.service.TestServiceImpl;
 
@@ -28,14 +29,21 @@ public class RootContextConfiguration
         return new TestServiceImpl();
     }
 
-    @Bean(name = "dataSource")
-    public DataSource getDataSource() {
-        DataSource source = new DriverManagerDataSource(
-                "jdbc:pgsql://localhost:5432/1nso",
-                "postgres",
-                "root"
-        );
+//    @Bean(name = "dataSource")
+//    public DataSource getDataSource() {
+//        DataSource source = new DriverManagerDataSource(
+//                "jdbc:postgresql://localhost:5432/1nso",
+//                "postgres",
+//                "root"
+//        );
+//
+//        return source;
+//    }
 
-        return source;
+    @Bean(name = "datasource")
+    public DataSource dataSource()
+    {
+        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
+        return lookup.getDataSource("1nso");
     }
 }
