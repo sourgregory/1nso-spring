@@ -19,7 +19,7 @@ public class TestRepositoryImpl implements TestRepository {
     @Override
     public Iterable<Language> getAllLanguages() {
         return this.entityManager.createQuery(
-                "select l from language l order by l.name", Language.class
+                "select l from Language l order by l.name", Language.class
         ).getResultList();
     }
 }

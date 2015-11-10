@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ua.upsite.nso.service.TestServiceImpl;
 
+import javax.persistence.Persistence;
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
@@ -51,7 +52,7 @@ public class RootContextConfiguration
         properties.put("javax.persistence.schema-generation.database.action",
                 "none");
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setDatabasePlatform("org.hibernate.dialect.PostgerSQL82");
+//        adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQL82");
         LocalContainerEntityManagerFactoryBean factory =
                 new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(adapter);
@@ -62,6 +63,7 @@ public class RootContextConfiguration
         factory.setJpaPropertyMap(properties);
         return factory;
     }
+
 
     @Bean
     public PlatformTransactionManager jpaTransactionManager()

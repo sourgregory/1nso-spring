@@ -22,7 +22,7 @@ public class TestServiceImpl implements TestService {
 
         StringBuilder builder = new StringBuilder();
         for (Language lang : langs) {
-            builder.append(lang.getName()).append("\n");
+            builder.append(lang.getLocale()).append("\n");
         }
 
         return builder.toString();
