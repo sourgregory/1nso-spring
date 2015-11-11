@@ -3,7 +3,6 @@ package ua.upsite.nso.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  *  Created by gregory on 11/9/15.

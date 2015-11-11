@@ -11,12 +11,12 @@ import javax.persistence.PersistenceContext;
  */
 
 @Repository
-public class TestRepositoryImpl implements TestRepository {
+public class TestRepositoryImpl {
 
     @PersistenceContext
     EntityManager entityManager;
 
-    @Override
+//    @Override
     public Iterable<Language> getAllLanguages() {
         return this.entityManager.createQuery(
                 "select l from Language l order by l.name", Language.class

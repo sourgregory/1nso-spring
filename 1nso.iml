@@ -20,8 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="EntityMappings" value="4fe81e51-60e5-40e0-aae9-792c4d4a5bec" />
-          <factory-entry name="entityManagerFactoryBean" />
+          <factory-entry name="entityManagerFactory" value="4fe81e51-60e5-40e0-aae9-792c4d4a5bec" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

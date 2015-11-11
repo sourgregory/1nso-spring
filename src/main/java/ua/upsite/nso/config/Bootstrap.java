@@ -1,5 +1,8 @@
 package ua.upsite.nso.config;
 
+/**
+ *  Created by gregory on 11/9/15.
+ */
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -9,17 +12,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-/**
- *  Created by gregory on 11/9/15.
- */
-
 @SuppressWarnings("unused")
 public class Bootstrap implements WebApplicationInitializer
 {
     @Override
     public void onStartup(ServletContext container) throws ServletException
     {
-        container.getServletRegistration("default").addMapping("/resource/*");
+        container.getServletRegistration("default").addMapping("/resource/*", "*.css", "*.js", "*.png", "*.gif", "*.jpg", "*.ico");
 
         AnnotationConfigWebApplicationContext rootContext =
                 new AnnotationConfigWebApplicationContext();
