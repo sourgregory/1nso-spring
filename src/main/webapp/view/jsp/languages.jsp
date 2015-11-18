@@ -1,4 +1,3 @@
-<%@ page import="ua.upsite.nso.model.Language" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
@@ -19,6 +18,16 @@
             <p>${language.name}</p>
             <p>${language.locale}</p>
         </c:forEach>
-    <p><spring:message code="test.message"/></p>
+    <spring:message code="ruslan.for" var="ruslan"/>
+    <p><spring:message code="test.message" arguments="${ruslan}"/></p>
+    <br>
+
+    <p>Users registered</p>
+    <c:forEach var="user" items="${users}">
+        <p>${user.userName}</p>
+        <p>${user.email}</p>
+        <p>${user.createdAt}</p>
+        <p>--------------------------</p>
+    </c:forEach>
 </body>
 </html>

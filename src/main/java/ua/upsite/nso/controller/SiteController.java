@@ -1,11 +1,9 @@
 package ua.upsite.nso.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import ua.upsite.nso.model.Language;
 import ua.upsite.nso.service.TestService;
 
 import javax.inject.Inject;
@@ -22,9 +20,11 @@ public class SiteController{
     @Inject
     TestService service;
 
+    @Transactional()
     @RequestMapping(path = "/")
     public String hello(ModelMap model) {
         model.addAttribute("languages", service.showLanguages());
+        model.addAttribute("users", service.showUsers());
         return "languages";
     }
 }

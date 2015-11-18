@@ -1,12 +1,14 @@
 package ua.upsite.nso.service;
 
-import org.hibernate.criterion.Order;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ua.upsite.nso.model.Language;
+import ua.upsite.nso.model.User;
 import ua.upsite.nso.repository.TestRepository;
+import ua.upsite.nso.repository.UserRepository;
 
 import javax.inject.Inject;
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +19,9 @@ public class TestServiceImpl implements TestService {
 
     @Inject
     private TestRepository repository;
+
+    @Inject
+    private UserRepository userRepository;
 
     @Override
     public String sayHello() {
@@ -34,6 +39,11 @@ public class TestServiceImpl implements TestService {
     public Iterable<Language> showLanguages() {
         Iterable<Language> languages = repository.findAll(new Sort(Sort.Direction.ASC, "locale"));
         return languages;
+    }
+
+    @Override
+    public Iterable<User> showUsers() {
+        return userRepository.findOrderByUserName();
     }
 
 }
