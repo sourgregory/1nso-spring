@@ -1,6 +1,7 @@
-package ua.upsite.nso.security;
+package ua.upsite.nso.model.security;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -42,10 +43,11 @@ public class Role {
         this.description = description;
     }
 
-    @JoinTable(name = "auth_roles_permissions", joinColumns = {
-            @JoinColumn(name = "permission_id", referencedColumnName = "id")
-    })
-    @ManyToMany(targetEntity = Permission.class)
+    @ManyToMany()
+    @JoinTable(name = "auth_roles_permissions",
+            joinColumns = { @JoinColumn(name = "permission_id", referencedColumnName = "id")},
+            inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
     public Set<Permission> getPermissions() {
         return permissions;
     }

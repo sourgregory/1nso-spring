@@ -65,12 +65,11 @@ public class RootContextConfiguration
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabasePlatform(sqlDialect);
         adapter.setShowSql(Boolean.valueOf(showSql));
-        adapter.setGenerateDdl(Boolean.TRUE);
         LocalContainerEntityManagerFactoryBean factory =
                 new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(adapter);
         factory.setDataSource(this.springJpaDataSource());
-        factory.setPackagesToScan("ua.upsite.nso.model");
+        factory.setPackagesToScan("ua.upsite.nso.model", "ua.upsite.nso.model.security");
         factory.setSharedCacheMode(SharedCacheMode.ENABLE_SELECTIVE);
         factory.setValidationMode(ValidationMode.NONE);
         factory.setJpaPropertyMap(properties);
@@ -89,11 +88,6 @@ public class RootContextConfiguration
     @Bean
     PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    HibernateExceptionTranslator hibernateExceptionTranslator() {
-        return new HibernateExceptionTranslator();
     }
 
     @Bean

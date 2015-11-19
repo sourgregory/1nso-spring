@@ -1,4 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%--@elvariable id="currentUser" type="ua.upsite.nso.model.User"--%>
 <%--
   Created by IntelliJ IDEA.
   User: gregory
@@ -7,12 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/site.css"/>" />
-    <title>Test</title>
-</head>
-<body>
+
+<layout:main>
+
+    <div><p>Current User:</p><p>${currentUser.userName} ${currentUser.password}</p></div>
+
     <p>Доступные языки:</p>
         <c:forEach var="language" items="${languages}">
             <p>${language.name}</p>
@@ -25,9 +25,10 @@
     <p>Users registered</p>
     <c:forEach var="user" items="${users}">
         <p>${user.userName}</p>
+        <p>${user.passwordHash}</p>
         <p>${user.email}</p>
         <p>${user.createdAt}</p>
         <p>--------------------------</p>
     </c:forEach>
-</body>
-</html>
+
+</layout:main>

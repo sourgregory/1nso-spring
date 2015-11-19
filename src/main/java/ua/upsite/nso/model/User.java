@@ -1,7 +1,15 @@
 package ua.upsite.nso.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import ua.upsite.nso.model.security.Permission;
+import ua.upsite.nso.model.security.Role;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  *  Created by gregory on 11/13/15.
@@ -9,7 +17,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "\"user\"")
-public class User {
+public class User implements UserDetails{
     private Long id;
     private String userName;
     private String authKey;
@@ -100,4 +108,74 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+
+    //////////////////////////User details interface implementation////////////////////////////
+
+    private static final long serialVersionUID = 1L;
+    private Set<Role> roles;
+
+    @ManyToMany()
+    @JoinTable(name = "auth_roles_users",
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")
+            })
+    Set<Role> getRoles() {
+        return this.roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Transient
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        Collection<Permission> authorities = new ArrayList<>();
+        Collection<Role> userRoles = this.getRoles();
+
+        if (userRoles != null) {
+
+            for (Role role : userRoles) {
+                authorities.addAll(role.getPermissions());
+            }
+        }
+        return authorities;
+    }
+
+    @Transient
+    @Override
+    public String getPassword() {
+        return getPasswordHash();
+    }
+
+    @Transient
+    @Override
+    public String getUsername() {
+        return getUserName();
+    }
+
+    @Transient
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Transient
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Transient
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Transient
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

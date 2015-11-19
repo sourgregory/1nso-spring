@@ -1,12 +1,11 @@
-package ua.upsite.nso.security;
+package ua.upsite.nso.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ua.upsite.nso.security.SecurityUser;
 import ua.upsite.nso.model.User;
-import ua.upsite.nso.repository.UserRepository;
+import ua.upsite.nso.repository.SecurityRepository;
 
 import javax.inject.Inject;
 
@@ -18,15 +17,15 @@ import javax.inject.Inject;
 public class SecurityService implements UserDetailsService {
 
     @Inject
-    UserRepository userRepository;
+    SecurityRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByName(s);
+        User user = repository.findByUserNameWithRoles(s);
         if (user == null) {
             throw new UsernameNotFoundException("User " + s + " does not exist!");
         }
 
-        return new SecurityUser(user);
+        return user;
     }
 }

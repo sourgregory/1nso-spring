@@ -1,4 +1,4 @@
-package ua.upsite.nso.security;
+package ua.upsite.nso.model.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
