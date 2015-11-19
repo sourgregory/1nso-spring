@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  *  Created by gregory on 11/19/15.
@@ -22,6 +23,7 @@ public abstract class StaticItem {
     private Date updatedAt;
     private Date deletedAt;
     private Content content;
+    private Set<Content> translations;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,12 +43,23 @@ public abstract class StaticItem {
         this.showInMenu = showInMenu;
     }
 
+    @OneToOne(targetEntity = Content.class)
     public Content getContent() {
         return content;
     }
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    @OneToMany(targetEntity = Content.class)
+    @JoinTable(name = "static", joinColumns = {@JoinColumn(name = "id")}, inverseJoinColumns = {})
+    public Set<Content> getTranslations() {
+        return translations;
+    }
+
+    public void setTranslations(Set<Content> translations) {
+        this.translations = translations;
     }
 
     public boolean isPublished() {

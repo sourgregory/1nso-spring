@@ -26,8 +26,7 @@ public class AuthController {
         @RequestMapping(value = "login"/*, method = RequestMethod.GET*/)
         public ModelAndView login(Map<String, Object> model)
         {
-            if(SecurityContextHolder.getContext().getAuthentication() instanceof
-                    SecurityUser)
+            if(SecurityContextHolder.getContext().getAuthentication() != null )
                 return new ModelAndView(new RedirectView("/admin", true, false));
 
             model.put("loginForm", new LoginForm());
