@@ -27,9 +27,10 @@ public class SiteController{
     @Transactional()
     @RequestMapping(path = "/")
     public String hello(ModelMap model) {
-//        model.addAttribute("languages", service.showLanguages());
+        model.addAttribute("languages", service.showLanguages());
         model.addAttribute("users", service.showUsers());
         model.addAttribute("currentUser", securityService.loadUserByUsername("sourgregory"));
+        model.addAttribute("articles", service.showArticles());
         return "languages";
     }
 }

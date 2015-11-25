@@ -1,5 +1,6 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--@elvariable id="currentUser" type="ua.upsite.nso.model.User"--%>
+<%--@elvariable id="article" type="ua.upsite.nso.model.statics.Article"--%>
 <%--
   Created by IntelliJ IDEA.
   User: gregory
@@ -21,6 +22,13 @@
     <spring:message code="ruslan.for" var="ruslan"/>
     <p><spring:message code="test.message" arguments="${ruslan}"/></p>
     <br>
+
+    <p>Articles:</p>
+    <c:forEach var="article" items="${articles}">
+        <p>${article.id}</p>
+        <%--<p>${article.content.language.name}</p>--%>
+        <p>${article.content.title}</p>
+    </c:forEach>
 
     <p>Users registered</p>
     <c:forEach var="user" items="${users}">

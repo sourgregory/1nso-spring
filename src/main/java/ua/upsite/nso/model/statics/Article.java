@@ -1,14 +1,15 @@
 package ua.upsite.nso.model.statics;
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *  Created by gregory on 11/19/15.
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "static")
 @DiscriminatorValue("article")
 public class Article extends StaticItem{
 

@@ -1,6 +1,7 @@
 package ua.upsite.nso.model.statics;
 
-import org.springframework.stereotype.Controller;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -35,6 +36,7 @@ public abstract class StaticItem {
         this.id = id;
     }
 
+    @Column(name = "show_in_menu")
     public boolean isShowInMenu() {
         return showInMenu;
     }
@@ -44,6 +46,9 @@ public abstract class StaticItem {
     }
 
     @OneToOne(targetEntity = Content.class)
+    @JoinColumn(name = "id", referencedColumnName = "static_id")
+//    @Where(clause = "static_content.language_id = 1")
+    @Fetch(FetchMode.JOIN)
     public Content getContent() {
         return content;
     }
@@ -53,7 +58,7 @@ public abstract class StaticItem {
     }
 
     @OneToMany(targetEntity = Content.class)
-    @JoinTable(name = "static", joinColumns = {@JoinColumn(name = "id")}, inverseJoinColumns = {})
+    @JoinColumn(name = "static_id", referencedColumnName = "id")
     public Set<Content> getTranslations() {
         return translations;
     }
@@ -62,6 +67,7 @@ public abstract class StaticItem {
         this.translations = translations;
     }
 
+    @Column(name = "is_published")
     public boolean isPublished() {
         return isPublished;
     }
@@ -78,6 +84,7 @@ public abstract class StaticItem {
         this.type = type;
     }
 
+    @Column(name = "sort_weight")
     public int getSortWeight() {
         return sortWeight;
     }
@@ -86,6 +93,7 @@ public abstract class StaticItem {
         this.sortWeight = sortWeight;
     }
 
+    @Column(name = "created_at")
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -94,6 +102,7 @@ public abstract class StaticItem {
         this.createdAt = createdAt;
     }
 
+    @Column(name = "updated_at")
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -102,6 +111,7 @@ public abstract class StaticItem {
         this.updatedAt = updatedAt;
     }
 
+    @Column(name = "deleted_at")
     public Date getDeletedAt() {
         return deletedAt;
     }

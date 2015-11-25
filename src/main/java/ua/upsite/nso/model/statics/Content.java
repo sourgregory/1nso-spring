@@ -15,6 +15,7 @@ public class Content {
 
     private Long id;
     private Language language;
+    private StaticItem staticItem;
     private String title;
     private String icon;
     private String slug;
@@ -37,6 +38,7 @@ public class Content {
     }
 
     @ManyToOne(targetEntity = Language.class)
+    @JoinColumn(name = "language_id", referencedColumnName = "id")
     public Language getLanguage() {
         return language;
     }
@@ -85,6 +87,7 @@ public class Content {
         this.text = text;
     }
 
+    @Column(name = "meta_keywords")
     public String getMetaKeywords() {
         return metaKeywords;
     }
@@ -93,6 +96,7 @@ public class Content {
         this.metaKeywords = metaKeywords;
     }
 
+    @Column(name = "meta_description")
     public String getMetaDescription() {
         return metaDescription;
     }
@@ -101,6 +105,7 @@ public class Content {
         this.metaDescription = metaDescription;
     }
 
+    @Column(name = "created_at")
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -109,6 +114,7 @@ public class Content {
         this.createdAt = createdAt;
     }
 
+    @Column(name = "updated_at")
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -117,6 +123,7 @@ public class Content {
         this.updatedAt = updatedAt;
     }
 
+    @Column(name = "deleted_at")
     public Date getDeletedAt() {
         return deletedAt;
     }

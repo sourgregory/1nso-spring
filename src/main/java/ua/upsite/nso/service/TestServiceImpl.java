@@ -4,11 +4,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ua.upsite.nso.model.Language;
 import ua.upsite.nso.model.User;
+import ua.upsite.nso.model.statics.Article;
+import ua.upsite.nso.repository.ArticleRepository;
 import ua.upsite.nso.repository.TestRepository;
 import ua.upsite.nso.repository.UserRepository;
 
 import javax.inject.Inject;
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,9 @@ public class TestServiceImpl implements TestService {
 
     @Inject
     private TestRepository repository;
+
+    @Inject
+    ArticleRepository articleRepository;
 
     @Inject
     private UserRepository userRepository;
@@ -44,6 +48,11 @@ public class TestServiceImpl implements TestService {
     @Override
     public Iterable<User> showUsers() {
         return userRepository.findOrderByUserName();
+    }
+
+    @Override
+    public Iterable<Article> showArticles() {
+        return articleRepository.find();
     }
 
 }
