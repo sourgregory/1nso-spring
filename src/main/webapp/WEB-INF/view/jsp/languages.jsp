@@ -23,20 +23,20 @@
     <p><spring:message code="test.message" arguments="${ruslan}"/></p>
     <br>
 
-    <p>Articles:</p>
-    <c:forEach var="article" items="${articles}">
-        <p>${article.id}</p>
+    <%--<p>Articles:</p>--%>
+    <%--<c:forEach var="article" items="${articles}">--%>
+        <%--<p>${article.id}</p>--%>
         <%--<p>${article.content.language.name}</p>--%>
-        <p>${article.content.title}</p>
-    </c:forEach>
-
-    <p>Users registered</p>
-    <c:forEach var="user" items="${users}">
-        <p>${user.userName}</p>
-        <p>${user.passwordHash}</p>
-        <p>${user.email}</p>
-        <p>${user.createdAt}</p>
-        <p>--------------------------</p>
-    </c:forEach>
+        <%--<p>${article.content.title}</p>--%>
+    <%--</c:forEach>--%>
+<%----%>
+    <%--<p>Users registered</p>--%>
+    <%--<c:forEach var="user" items="${users}">--%>
+        <%--<p>${user.userName}</p>--%>
+        <%--<p>${user.passwordHash}</p>--%>
+        <%--<p>${user.email}</p>--%>
+        <%--<p>${user.createdAt}</p>--%>
+        <%--<p>--------------------------</p>--%>
+    <%--</c:forEach>--%>
 
 </layout:main>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="">
+    <head>
+        {% block head %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ '1nso' | translate }} :: {{  htmlTitle  }} </title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/resources/css/site.css" rel="stylesheet" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="/resources/javascript/script.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-THHVPM"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-THHVPM');
+    </script>
+    <!-- End Google Tag Manager -->
+
+        <div class="wrap">
+            {% block main_menu %}
+                {% include 'main_menu.twig' %}
+            {% endblock %}
+
+            <div class="container">
+                {% block breadcrumbs %}
+                {% endblock %}
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block footer %}
+        <footer class="footer">
+            <div class="container">
+                <p class="pull-left">
+                    <a href="http://up-site.com.ua" target="_blank">&copy; Up-Site {{ date | format("dd.mm.yyyy") }} </a>
+                </p>
+            </div>
+        </footer>
+        {% endblock %}
+    </body>
+</html>

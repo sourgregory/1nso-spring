@@ -1,5 +1,6 @@
 package ua.upsite.nso.config;
 
+import com.lyncode.jtwig.mvc.JtwigViewResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 @Configuration
@@ -25,12 +26,20 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 {
 
+//    @Bean
+//    public InternalResourceViewResolver viewResolver() {
+//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//        resolver.setPrefix("/WEB-INF/view/jsp/");
+//        resolver.setSuffix(".jsp");
+//        return resolver;
+//    }
+
     @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/view/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
+    public ViewResolver viewResolver() {
+        JtwigViewResolver viewResolver = new JtwigViewResolver();
+        viewResolver.setPrefix("/WEB-INF/view/twig/");
+        viewResolver.setSuffix(".twig");
+        return viewResolver;
     }
 
     @Bean

@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.upsite.nso.service.SecurityService;
-import ua.upsite.nso.service.TestService;
+import ua.upsite.nso.service.CategoryService;
+import ua.upsite.nso.service.PageService;
 
 import javax.inject.Inject;
 
@@ -19,18 +19,16 @@ import javax.inject.Inject;
 public class SiteController{
 
     @Inject
-    TestService service;
+    CategoryService categoryService;
 
     @Inject
-    SecurityService securityService;
+    PageService pageService;
 
     @Transactional()
-    @RequestMapping(path = "/")
+    @RequestMapping(path = {"/", "/index"})
     public String hello(ModelMap model) {
-        model.addAttribute("languages", service.showLanguages());
-        model.addAttribute("users", service.showUsers());
-        model.addAttribute("currentUser", securityService.loadUserByUsername("sourgregory"));
-        model.addAttribute("articles", service.showArticles());
-        return "languages";
+        model.addAttribute("categories", categoryService.getPublishedCategories());
+        model.addAttribute("indexPage", pageService.getIndexPage());
+        return "statics/index";
     }
 }

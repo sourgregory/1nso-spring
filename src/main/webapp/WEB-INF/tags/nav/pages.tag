@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav id="w0" class="navbar-inverse nlkvdavbar-fixed-top navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -8,22 +9,15 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img alt="Первый Никовый Социум" src="/images/icons/logo_nso.png">
-                <?= Html::encode($brandLabel) ?>
+                <img alt="[1nso]" src="/images/icons/logo_nso.png">
+                1nso
             </a>
         </div>
         <div id="w0-collapse" class="collapse navbar-collapse">
             <ul id="w1" class="navbar-nav navbar-right nav">
-                <?php foreach ($pages->models as $page): ?>
-                <li>
-                    <?= Html::a($page->getTitle(), Url::to(['cat-articles/view', 'name' => $page->getSlug()])) ?>
-                </li>
-                <?php endforeach; ?>
-                <?php foreach ($auth as $authItem): ?>
-                <li>
-                    <?= Html::a($authItem['label'], $authItem['url']) ?>
-                </li>
-                <?php endforeach; ?>
+                <c:forEach var="page" items="${menuPages}">
+                    <li><a href="<c:url value="/page/${page.content.slug}"/>">${page.content.title}</a></li>
+                </c:forEach>
             </ul>
         </div>
     </div>

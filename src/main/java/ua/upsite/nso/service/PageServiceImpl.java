@@ -20,4 +20,9 @@ public class PageServiceImpl implements PageService{
     public Iterable<Page> getMenuPages() {
         return repository.findMenuPages();
     }
+
+    @Override
+    public Page getIndexPage() {
+        return repository.findOne(1L);
+    }
 }

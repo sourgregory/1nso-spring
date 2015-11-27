@@ -10,15 +10,15 @@ import java.util.Set;
 /**
  *  Created by gregory on 11/19/15.
  */
-
-@MappedSuperclass
+@Entity
+@Table(name = "static")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 public abstract class StaticItem {
 
     private Long id;
     private boolean showInMenu;
-    private boolean isPublished;
-    private String type;
+    private boolean published;
     private int sortWeight;
     private Date createdAt;
     private Date updatedAt;
@@ -69,19 +69,11 @@ public abstract class StaticItem {
 
     @Column(name = "is_published")
     public boolean isPublished() {
-        return isPublished;
+        return published;
     }
 
     public void setPublished(boolean published) {
-        isPublished = published;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+        this.published = published;
     }
 
     @Column(name = "sort_weight")

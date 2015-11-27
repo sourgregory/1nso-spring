@@ -6,7 +6,7 @@
               required="true" %>
 <%@ attribute name="extraHeadContent" fragment="true" required="false" %>
 <%@ attribute name="extraNavigationContent" fragment="true" required="false" %>
-<%@ include file="/view/jsp/base.jspf" %>
+<%@ include file="/WEB-INF/view/jsp/base.jspf" %>
 <template:main htmlTitle="${htmlTitle}" bodyTitle="${bodyTitle}">
     <jsp:attribute name="headContent">
         <jsp:invoke fragment="extraHeadContent" />

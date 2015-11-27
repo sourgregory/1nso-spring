@@ -1,0 +1,32 @@
+{% extends '../layout/main.twig' %}
+
+{% block content %}
+<div class="site-index">
+
+    <article class="index_thumb">
+        <h2>{{ indexPage.title }}</h2>
+        <p>{{ indexPage.content.text }}</p>
+    </article>
+
+    <div class="body-content">
+        {% for category in categories %}
+        <div class="row">
+            <h2><a href="/category/{{ category.content.slug }}">{{ category.content.title }}</a></h2>
+            <div class="articles">
+                {% for article in category.articles %}
+                <div class="col-sm-4">
+                    <article class="index_thumb">
+
+                        <h2><a href="/article/{{ article.content.slug }}">{{ article.content.title }}</a></h2>
+                        <p>{{ article.content.description }}</p>
+
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

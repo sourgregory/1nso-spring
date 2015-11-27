@@ -2,7 +2,7 @@
 <%@ tag body-content="scriptless" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="htmlTitle" type="java.lang.String" rtexprvalue="true" required="true" %>
 <%@ attribute name="bodyTitle" type="java.lang.String" rtexprvalue="true" required="true" %>
-<%@ include file="/view/jsp/base.jspf" %>
+<%@ include file="/WEB-INF/view/jsp/base.jspf" %>
 
 <layout:main htmlTitle="${htmlTitle}" bodyTitle="${bodyTitle}">
     <jsp:attribute name="headContent">

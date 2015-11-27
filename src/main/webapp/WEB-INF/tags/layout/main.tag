@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
+<%@ taglib prefix="nav" tagdir="/WEB-INF/tags/nav" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--@elvariable id="_csrf" type="org.springframework.security.web.csrf.CsrfToken"--%>
@@ -10,11 +10,9 @@
 <%@ attribute name="bodyTitle" type="java.lang.String" rtexprvalue="true" required="false" %>
 <%@ attribute name="headContent" fragment="true" required="false" %>
 <%@ attribute name="navigationContent" fragment="true" required="false" %>
-<%--<%@ include file="/view/jsp/base.jspf" %>--%>
+<%@ include file="/WEB-INF/view/jsp/base.jspf" %>
 
 <jsp:useBean id="now" class="java.util.Date"/>
-
-<fmt:formatDate value="${now}" pattern="dd-MM-yyyy HH:mm:ss a z" />
 
 <!DOCTYPE html>
 
@@ -22,9 +20,12 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><spring:message code="1nso" /> :: <c:out value="${fn:trim(htmlTitle)}" /></title>
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<c:url value="/resources/css/site.css" />" />
+        <%--<link href="http://1nso.loc//assets/45b0e787/css/bootstrap.css" rel="stylesheet"/>--%>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="/resources/javascript/script.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <jsp:invoke fragment="headContent" />
     </head>
 
@@ -42,15 +43,16 @@
         <!-- End Google Tag Manager -->
 
         <div class="wrap">
-            <%--<?= MainMenu::widget() ?>--%>
+            <nav:pages/>
+            <nav:categories/>
             <%--<?= CategoriesMenu::widget() ?>--%>
 
             <div class="container">
-                <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'homeLink' => ['label' => Yii::t('common/pages', 'Социум'), 'url' => Url::home()],
-                ]) ?>
-                <?= Alert::widget() ?>
+                <%--<?= Breadcrumbs::widget([--%>
+                    <%--'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],--%>
+                <%--'homeLink' => ['label' => Yii::t('common/pages', 'Социум'), 'url' => Url::home()],--%>
+                <%--]) ?>--%>
+                <%--<?= Alert::widget() ?>--%>
 
                 <jsp:doBody />
 
@@ -64,3 +66,5 @@
                 </p>
             </div>
         </footer>
+    </body>
+</html>

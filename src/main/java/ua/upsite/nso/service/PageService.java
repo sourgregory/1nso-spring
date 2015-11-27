@@ -10,4 +10,5 @@ public interface PageService {
 
     Iterable<Page> getMenuPages();
 
+    Page getIndexPage();
 }
